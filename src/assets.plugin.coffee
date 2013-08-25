@@ -16,67 +16,58 @@ module.exports = (BasePlugin) ->
             super
             @assetLocations = {}
 
-        parseAfter: (opts, next) ->
-            me = @
-            config = @config
-
-            docpad.log 'info', 'in parseAfter'
-
-            next()
-            @
-
         renderBefore: ({templateData}, next) ->
             me = @
             config = @config
 
-            docpad.log 'info', 'in renderBefore'
+            docpad.log 'debug', 'in renderBefore'
 
             templateData.asset = (name) ->
-                docpad.log 'info', "Working through file #{name}"
+                docpad.log 'debug', "Working through file #{name}"
                 f = @getFileAtPath(name)
                 if f
                     srcPath = f.attributes.fullPath
                     if not (f.attributes.fullPath of me.assetLocations)
-                        docpad.log 'info', 'First time seen, creating hash'
-                        docpad.log 'info', "Source path is #{srcPath}"
-                        docpad.log 'info', "Out path is #{f.attributes.outDirPath}"
+                        docpad.log 'debug', 'First time seen, creating hash'
+                        docpad.log 'debug', "Source path is #{srcPath}"
+                        docpad.log 'debug', "Out path is #{f.attributes.outDirPath}"
                         crypto = require('crypto')
                         shasum = crypto.createHash('sha1')
                         shasum.update(f.attributes.source)
                         hash = shasum.digest('hex')
-                        docpad.log 'info', "Hash is #{hash}"
+                        docpad.log 'debug', "Hash is #{hash}"
                         if (config.retainPath == 'yes')
                             relativeOutDirPath = f.attributes.relativeOutDirPath
                         else
                             relativeOutDirPath = ''
-                        docpad.log 'info', "relativeOutDirPath is #{relativeOutDirPath}"
+                        docpad.log 'debug', "relativeOutDirPath is #{relativeOutDirPath}"
 
                         if (config.retainName == 'yes')
                             outBasename = "#{f.attributes.basename}-#{hash}"
                         else
                             outBasename = hash
-                        docpad.log 'info', "outBasename is #{outBasename}"
+                        docpad.log 'debug', "outBasename is #{outBasename}"
 
                         if (relativeOutDirPath == '')
                             relativeOutBase = outBasename
                         else
                             relativeOutBase = "#{relativeOutDirPath}#{pathUtil.sep}#{outBasename}"
-                        docpad.log 'info', "relativeOutBase is #{relativeOutBase}"
+                        docpad.log 'debug', "relativeOutBase is #{relativeOutBase}"
 
                         outFilename = "#{outBasename}.#{f.attributes.outExtension}"
-                        docpad.log 'info', "outFilename is #{outFilename}"
+                        docpad.log 'debug', "outFilename is #{outFilename}"
 
                         relativeOutPath = "#{relativeOutBase}.#{f.attributes.outExtension}"
-                        docpad.log 'info', "relativeOutPath is #{relativeOutPath}"
+                        docpad.log 'debug', "relativeOutPath is #{relativeOutPath}"
 
                         if (relativeOutDirPath == '')
                             outDirPath = docpad.config.outPath
                         else
                             outDirPath = "#{docpad.config.outPath}#{pathUtil.sep}#{relativeOutDirPath}"
-                        docpad.log 'info', "outDirPath is #{outDirPath}"
+                        docpad.log 'debug', "outDirPath is #{outDirPath}"
 
                         outPath = "#{outDirPath}#{pathUtil.sep}#{outFilename}"
-                        docpad.log 'info', "outPath is #{outPath}"
+                        docpad.log 'debug', "outPath is #{outPath}"
 
                         me.assetLocations[srcPath] = {
                             relativeOutDirPath: relativeOutDirPath
@@ -87,10 +78,10 @@ module.exports = (BasePlugin) ->
                             outDirPath: outDirPath
                             outPath: outPath
                         }
-                    docpad.log 'info', "Returning #{me.assetLocations[srcPath].relativeOutPath}"
-                    return me.assetLocations[srcPath].relativeOutPath
+                    docpad.log 'debug', "Returning #{pathUtil.sep}#{me.assetLocations[srcPath].relativeOutPath}"
+                    return "#{pathUtil.sep}#{me.assetLocations[srcPath].relativeOutPath}"
                 else
-                    debug.log 'info', "Asset #{name} not found; ignoring"
+                    debug.log 'debug', "Asset #{name} not found; ignoring"
                     return name
 
             next()

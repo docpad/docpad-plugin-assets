@@ -1,0 +1,1 @@
+<%- @asset('/images/1.png') %>
