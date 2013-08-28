@@ -17,6 +17,9 @@ By default the plugin will leave the path along and replace the name of the file
   - `retainPath`: if set to 'no' then this will remove any leading path from the URL and put the asset in the root directory.  In the above case the output URL will be `/3992a5c4177710abf7d1e90b91636b26cbac138b.png`
   - `retainName`: if set to 'yes' then this will retain the name of the original file, and append the hash to it.  In the above case the output URL will be `/images/myimage-3992a5c4177710abf7d1e90b91636b26cbac138b.png`
 
+## Implementation Notes
+Please ensure that all assets use absolute path names, otherwise this plugin might not operate correctly.
+
 ## Install
 
 ```
