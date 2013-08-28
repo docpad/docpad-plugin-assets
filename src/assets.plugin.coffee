@@ -9,6 +9,7 @@ module.exports = (BasePlugin) ->
         config:
             retainPath: 'yes'
             retainName: 'no'
+            minifyJS: 'yes'
 
         assetLocations: null # Object
 
@@ -89,10 +90,19 @@ module.exports = (BasePlugin) ->
 
         writeBefore: ({collection, templateData}, next)->
             me = @
+            config = @config
 
             collection.forEach (document) ->
                 srcPath = document.attributes.fullPath
                 if (srcPath of me.assetLocations)
+                    if (document.attributes.outExtension == 'js' && config.minifyJS == 'yes')
+                        docpad.log 'debug', "Considering #{srcPath} for minification"
+                        if (/[-\.]min\.js$/.test(document.attributes.filename))
+                            docpad.log 'debug', 'Filename suggests already minified; skipping'
+                        else
+                            docpad.log 'debug', "Minifying #{srcPath}"
+                            UglifyJS = require("uglify-js")
+                            document.attributes.content = UglifyJS.minify(document.attributes.content, {fromString: true}).code
                     docpad.log 'debug', "Changing output path of #{srcPath}"
                     document.attributes.relativeOutDirPath = me.assetLocations[srcPath].relativeOutDirPath
                     document.attributes.outBasename = me.assetLocations[srcPath].outBasename
