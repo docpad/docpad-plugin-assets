@@ -30,25 +30,30 @@ module.exports = (BasePlugin) ->
                     if not (f.attributes.fullPath of me.assetLocations)
                         docpad.log 'debug', 'First time seen, creating hash'
                         docpad.log 'debug', "Source path is #{srcPath}"
-                        docpad.log 'debug', "Out path is #{f.attributes.outDirPath}"
+                        docpad.log 'debug', "Out dir path is #{f.attributes.outDirPath}"
                         crypto = require('crypto')
                         shasum = crypto.createHash('sha1')
-                        shasum.update(f.attributes.source)
+                        if (!!f.attributes.source)
+                            docpad.log 'debug', 'Reading contents from file'
+                            shasum.update(require('fs').readFileSync(srcPath).toString())
+                        else
+                            docpad.log 'debug', 'Reading contents from source attribute'
+                            shasum.update(f.attributes.source)
                         hash = shasum.digest('hex')
                         docpad.log 'debug', "Hash is #{hash}"
-                        if (config.retainPath == 'yes')
+                        if (config.retainPath is 'yes')
                             relativeOutDirPath = f.attributes.relativeOutDirPath
                         else
                             relativeOutDirPath = ''
                         docpad.log 'debug', "relativeOutDirPath is #{relativeOutDirPath}"
 
-                        if (config.retainName == 'yes')
+                        if (config.retainName is 'yes')
                             outBasename = "#{f.attributes.basename}-#{hash}"
                         else
                             outBasename = hash
                         docpad.log 'debug', "outBasename is #{outBasename}"
 
-                        if (relativeOutDirPath == '')
+                        if (relativeOutDirPath is '')
                             relativeOutBase = outBasename
                         else
                             relativeOutBase = "#{relativeOutDirPath}#{pathUtil.sep}#{outBasename}"
@@ -60,7 +65,7 @@ module.exports = (BasePlugin) ->
                         relativeOutPath = "#{relativeOutBase}.#{f.attributes.outExtension}"
                         docpad.log 'debug', "relativeOutPath is #{relativeOutPath}"
 
-                        if (relativeOutDirPath == '')
+                        if (relativeOutDirPath is '')
                             outDirPath = docpad.config.outPath
                         else
                             outDirPath = "#{docpad.config.outPath}#{pathUtil.sep}#{relativeOutDirPath}"
