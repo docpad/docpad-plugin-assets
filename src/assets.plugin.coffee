@@ -34,11 +34,11 @@ module.exports = (BasePlugin) ->
                         crypto = require('crypto')
                         shasum = crypto.createHash('sha1')
                         if (!!f.attributes.source)
-                            docpad.log 'debug', 'Reading contents from file'
-                            shasum.update(require('fs').readFileSync(srcPath).toString())
-                        else
                             docpad.log 'debug', 'Reading contents from source attribute'
                             shasum.update(f.attributes.source)
+                        else
+                            docpad.log 'debug', 'Reading contents from file'
+                            shasum.update(require('fs').readFileSync(srcPath).toString())
                         hash = shasum.digest('hex')
                         docpad.log 'debug', "Hash is #{hash}"
                         if (config.retainPath is 'yes')

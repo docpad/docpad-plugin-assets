@@ -1,7 +1,7 @@
 {
   "name": "docpad-plugin-assets",
-  "version": "2.0.1",
-  "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective cachign whilst enabling cache busting when contents change",
+  "version": "2.0.2",
+  "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
   "homepage": "https://github.com/mcdee/docpad-plugin-assets",
   "keywords": [
     "docpad",
@@ -33,7 +33,7 @@
     "coffee-script": "~1.6.3"
   },
   "devDependencies": {
-    "coffee-script": "~1.6.2"
+    "coffee-script": "~1.6.3"
   },
   "main": "./out/assets.plugin.js",
   "scripts": {
