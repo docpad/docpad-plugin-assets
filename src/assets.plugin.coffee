@@ -86,7 +86,7 @@ module.exports = (BasePlugin) ->
                     docpad.log 'debug', "Returning #{pathUtil.sep}#{me.assetLocations[srcPath].relativeOutPath}"
                     return "#{pathUtil.sep}#{me.assetLocations[srcPath].relativeOutPath}"
                 else
-                    debug.log 'debug', "Asset #{name} not found; ignoring"
+                    docpad.log 'debug', "Asset #{name} not found; ignoring"
                     return name
 
             next()

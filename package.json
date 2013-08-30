@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-assets",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
   "homepage": "https://github.com/mcdee/docpad-plugin-assets",
   "keywords": [
