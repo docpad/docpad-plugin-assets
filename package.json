@@ -1,42 +1,43 @@
 {
-	"name": "docpad-plugin-assets",
-	"version": "2.1.0",
-	"description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective cachign whilst enabling cache busting when contents change",
-	"homepage": "https://github.com/mcdee/docpad-plugin-assets",
-	"keywords": [
-		"docpad",
-		"docpad-plugin",
-		"assets",
-		"cache",
-		"cachebusting",
-		"cache-busting"
-	],
-	"author": "Copyright Jim McDonald <Jim@mcdee.net>",
-	"maintainers": [
-		"Jim McDonald <Jim@mcdee.net (https://github.com/mcdee/)"
-	],
-	"contributors": [
-		"Jim McDonald <Jim@mcdee.net (https://github.com/mcdee/)"
-	],
-	"bugs": {
-		"url": "https://github.com/mcdee/docpad-plugin-assets/issues"
-	},
-	"repository" : {
-		"type": "git",
-		"url": "https://github.com/mcdee/docpad-plugin-assets.git"
-	},
-	"engines" : {
-		"node": ">=0.8",
-		"docpad": ">=6"
-	},
-	"dependencies": {
-		"bal-util": "~2.3.0"
-	},
-	"devDependencies": {
-		"coffee-script": "~1.6.2"
-	},
-	"main": "./out/assets.plugin.js",
-	"scripts": {
-		"test": "node ./out/assets.test.js"
-	}
+  "name": "docpad-plugin-assets",
+  "version": "2.1.1",
+  "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
+  "homepage": "https://github.com/mcdee/docpad-plugin-assets",
+  "keywords": [
+    "docpad",
+    "docpad-plugin",
+    "assets",
+    "cache",
+    "cachebusting",
+    "cache-busting"
+  ],
+  "author": "Jim McDonald <Jim@mcdee.net>",
+  "maintainers": [
+    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee/)"
+  ],
+  "contributors": [
+    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee/)"
+  ],
+  "bugs": {
+    "url": "https://github.com/mcdee/docpad-plugin-assets/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcdee/docpad-plugin-assets.git"
+  },
+  "engines": {
+    "node": ">=0.8",
+    "docpad": ">=6"
+  },
+  "dependencies": {
+    "bal-util": "~2.3.0",
+    "coffee-script": "~1.6.3"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.3"
+  },
+  "main": "./out/assets.plugin.js",
+  "scripts": {
+    "test": "node ./out/assets.test.js"
+  }
 }
