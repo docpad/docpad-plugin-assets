@@ -1,4 +1,5 @@
 {
+  "title": "Assets Plugin for DocPad",
   "name": "docpad-plugin-assets",
   "version": "2.1.1",
   "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
@@ -11,7 +12,7 @@
     "cachebusting",
     "cache-busting"
   ],
-  "author": "Jim McDonald <Jim@mcdee.net>",
+  "author": "2013+ Jim McDonald <Jim@mcdee.net>",
   "maintainers": [
     "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee/)"
   ],
@@ -29,14 +30,11 @@
     "node": ">=0.8",
     "docpad": ">=6"
   },
-  "dependencies": {
-    "bal-util": "~2.3.0",
-    "coffee-script": "~1.6.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "coffee-script": "~1.6.3"
   },
-  "main": "./out/assets.plugin.js",
+  "main": "out/index.js",
   "scripts": {
     "test": "node ./out/assets.test.js"
   }
