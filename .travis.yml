@@ -1,22 +1,23 @@
-# v1.1.1 June 25, 2013
-# This file was originally created by Benjamin Lupton <b@lupton.cc> (http://balupton.com)
-# and is currently licensed under the Creative Commons Zero (http://creativecommons.org/publicdomain/zero/1.0/)
-# making it public domain so you can do whatever you wish with it without worry (you can even remove this notice!)
-#
-# If you change something here, be sure to reflect the changes in:
-# - the Cakefile
-# - the scripts section of the package.json file
-# - the .travis.yml file
+sudo: false
 language: node_js
-before_script: "./node_modules/.bin/cake test-setup"
-script: "npm test"
 node_js:
-  - "0.8"
-  - "0.10"
+- '6'
+- '8'
+- '10'
+matrix:
+  fast_finish: true
+  allow_failures: []
+cache:
+  directories:
+  - "$HOME/.npm"
+  - "$HOME/.yarn-cache"
+install:
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/a16fffacc146944edb58d02bbc565bf467099b18/scripts/node-install.bash)"
+before_script:
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/a16fffacc146944edb58d02bbc565bf467099b18/scripts/node-verify.bash)"
+after_success:
+- eval "$(curl -fsSL https://raw.githubusercontent.com/bevry/awesome-travis/a16fffacc146944edb58d02bbc565bf467099b18/scripts/node-publish.bash)"
 notifications:
-  irc:
-    - "irc.freenode.org#bevry-dev"
-    - "irc.freenode.org#docpad-dev"
   email:
     recipients:
-      - travisci@bevry.me
+      secure: k1lZzu5jZxAbpZyDa0q4bbjgPYBCZCke320WQjmieojRCNsA3d3UD/fcYK9zklfKZ0eOEd7QO7TqzdTmRCxLUErPA8LTHFe+ycvhky+wy9/H9r7cqhCMYQbONwt9BbQWt4Qq13p5mahe9a4KLHzQFQKCzbodpZDt4mpkIe+/8Y38L2y5nHS8u82zLROO5V3dhgVTut2d9Zz2reAhAH16Lj1+9qQJGvRAsbgHm8IYtDc+IluWd2ANgYj9wGqRNVe9lj4SSQ0OoUyGy5iSqGUsySpgRArEYVydTM//uxSFmB6c3DIBn5VCXvPWEr6zVYyqSP6krwZehvndbMsSXm75lcABUmI6du2MVquL5nMzb9T54rcAt2UTXl/v7KGu6EKYCyu1vR63z9AcNsmN577LFeAelwIxu4vbrmEA6JiEHb2TfIA45lRx3Aak1FkJyRhp+IWmbiwS55u8iDv9V0s5QLgarsLqpFz4G8gL5e7VkokQ//pjgzJoYGcYwtmX21OAVjLrKXShajWe1buawo4dRe7bdyU/pUWEI0n9HkdNerKSK0vYsP9zLiwvaQYiqlBc1lx3FjlO3SVD/VZILpFKBOB8o5RQ1yvAHIErjzw4CFCPg3FQbIbumiKcfCveOkitzUQjU7F9zUcO9h+AQHHSJ8oiHPW9vlpN0V4gzGLhH+I=

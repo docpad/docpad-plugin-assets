@@ -10,13 +10,10 @@ module.exports = (BasePlugin) ->
 
 		assetLocations: null # Object
 
-		constructor: ->
-			super
-			@assetLocations = {}
-
 		renderBefore: ({templateData}, next) ->
 			me = @
 			config = @config
+			docpad = @docpad
 
 			docpad.log 'debug', 'in renderBefore'
 
@@ -90,8 +87,9 @@ module.exports = (BasePlugin) ->
 			next()
 			@
 
-		writeBefore: ({collection, templateData}, next)->
+		writeBefore: ({collection, templateData}, next) ->
 			me = @
+			docpad = @docpad
 
 			collection.forEach (document) ->
 				srcPath = document.attributes.fullPath
@@ -107,6 +105,9 @@ module.exports = (BasePlugin) ->
 
 			next()
 			@
+
+		generateBefore: ->
+			@assetLocations = {}
 
 		generateAfter: ->
 			@assetLocations = {}

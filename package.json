@@ -3,7 +3,8 @@
   "name": "docpad-plugin-assets",
   "version": "2.1.1",
   "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
-  "homepage": "https://github.com/mcdee/docpad-plugin-assets",
+  "homepage": "https://github.com/docpad/docpad-plugin-assets",
+  "license": "MIT",
   "keywords": [
     "docpad",
     "docpad-plugin",
@@ -12,30 +13,109 @@
     "cachebusting",
     "cache-busting"
   ],
-  "author": "2013+ Jim McDonald <Jim@mcdee.net>",
+  "badges": {
+    "list": [
+      "travisci",
+      "npmversion",
+      "npmdownloads",
+      "daviddm",
+      "daviddmdev",
+      "---",
+      "patreon",
+      "opencollective",
+      "flattr",
+      "paypal",
+      "bitcoin",
+      "wishlist"
+    ],
+    "config": {
+      "patreonUsername": "bevry",
+      "opencollectiveUsername": "bevry",
+      "flattrUsername": "balupton",
+      "paypalURL": "https://bevry.me/paypal",
+      "bitcoinURL": "https://bevry.me/bitcoin",
+      "wishlistURL": "https://bevry.me/wishlist"
+    }
+  },
+  "author": "2013+ Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee)",
   "maintainers": [
-    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee/)"
+    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee)"
   ],
   "contributors": [
-    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee/)"
+    "Jim McDonald <Jim@mcdee.net> (https://github.com/mcdee)"
   ],
   "bugs": {
-    "url": "https://github.com/mcdee/docpad-plugin-assets/issues"
+    "url": "https://github.com/docpad/docpad-plugin-assets/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcdee/docpad-plugin-assets.git"
+    "url": "https://github.com/docpad/docpad-plugin-assets.git"
   },
   "engines": {
-    "node": ">=0.8",
+    "node": ">=6",
     "docpad": ">=6"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "coffee-script": "~1.6.3"
+  "editions": [
+    {
+      "description": "coffeescript source code with require for modules",
+      "directory": "source",
+      "entry": "index.coffee",
+      "syntaxes": [
+        "coffeescript",
+        "require"
+      ],
+      "engines": false
+    },
+    {
+      "description": "coffeescript compiled for node.js with require for modules",
+      "directory": "edition-esnext",
+      "entry": "index.js",
+      "syntaxes": [
+        "javascript",
+        "esnext",
+        "require"
+      ],
+      "engines": {
+        "node": true,
+        "browsers": false
+      }
+    }
+  ],
+  "main": "edition-esnext/index.js",
+  "dependencies": {
+    "docpad-baseplugin": "^1.0.3"
   },
-  "main": "out/index.js",
+  "peerDependencies": {
+    "docpad": "^6.82.0"
+  },
+  "devDependencies": {
+    "coffeelint": "^2.1.0",
+    "coffeescript": "^2.3.2",
+    "docpad": "^6.82.4",
+    "docpad-plugintester": "^1.3.2",
+    "projectz": "^1.4.0",
+    "valid-directory": "^1.0.0"
+  },
+  "optionalDependencies": {},
   "scripts": {
-    "test": "node ./out/assets.test.js"
+    "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out",
+    "our:compile": "npm run our:compile:edition-esnext",
+    "our:compile:edition-esnext": "coffee -bco ./edition-esnext ./source",
+    "our:deploy": "echo no need for this project",
+    "our:meta": "npm run our:meta:projectz",
+    "our:meta:projectz": "projectz compile",
+    "our:release": "npm run our:release:prepare && npm run our:release:check-changelog && npm run our:release:check-dirty && npm run our:release:tag && npm run our:release:push",
+    "our:release:check-changelog": "cat ./HISTORY.md | grep v$npm_package_version || (echo add a changelog entry for v$npm_package_version && exit -1)",
+    "our:release:check-dirty": "git diff --exit-code",
+    "our:release:prepare": "npm run our:clean && npm run our:compile && npm run our:test && npm run our:meta",
+    "our:release:push": "git push origin master && git push origin --tags",
+    "our:release:tag": "export MESSAGE=$(cat ./HISTORY.md | sed -n \"/## v$npm_package_version/,/##/p\" | sed 's/## //' | awk 'NR>1{print buf}{buf = $0}') && test \"$MESSAGE\" || (echo 'proper changelog entry not found' && exit -1) && git tag v$npm_package_version -am \"$MESSAGE\"",
+    "our:setup": "npm run our:setup:npm",
+    "our:setup:npm": "npm install",
+    "our:test": "npm run our:verify && npm test",
+    "our:verify": "npm run our:verify:coffeelint && npm run our:verify:directory",
+    "our:verify:coffeelint": "coffeelint ./source",
+    "our:verify:directory": "npx valid-directory",
+    "test": "docpad-plugintester"
   }
 }

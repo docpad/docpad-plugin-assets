@@ -1,18 +1,45 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
+# 2018 September 3
+# https://github.com/bevry/base
 
-pids
-logs
-results
+# System Files
+**/.DS_Store
 
-node_modules
-npm-debug.log
+# Temp Files
+yarn.lock
+**/.docpad.db
+**/*.log
+**/*.cpuprofile
+**/*.heapsnapshot
 
-test/out/
-out/
+# Editor Files
+.c9/
+.vscode/
+
+# Private Files
+.env
+.idea
+.cake_task_cache
+
+# Build Caches
+build/
+components/
+bower_components/
+node_modules/
+
+# Build Outputs
+**/out.*
+**/*.out.*
+**/out/
+**/output/
+edition*/
+coffeejs/
+coffee/
+es5/
+es2015/
+esnext/
+docs/
+
+# =====================================
+# CUSTOM
+
+# None
