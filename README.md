@@ -7,7 +7,7 @@
 
 <!-- BADGES/ -->
 
-<span class="badge-travisci"><a href="http://travis-ci.org/docpad/docpad-plugin-assets" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/docpad/docpad-plugin-assets/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-travisci"><a href="http://travis-ci.com/docpad/docpad-plugin-assets" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/com/docpad/docpad-plugin-assets/master.svg" alt="Travis CI Build Status" /></a></span>
 <span class="badge-npmversion"><a href="https://npmjs.org/package/docpad-plugin-assets" title="View this project on NPM"><img src="https://img.shields.io/npm/v/docpad-plugin-assets.svg" alt="NPM version" /></a></span>
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/docpad-plugin-assets" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/docpad-plugin-assets.svg" alt="NPM downloads" /></a></span>
 <span class="badge-daviddm"><a href="https://david-dm.org/docpad/docpad-plugin-assets" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/docpad/docpad-plugin-assets.svg" alt="Dependency Status" /></a></span>
@@ -59,6 +59,9 @@ By default the plugin will leave the path along and replace the name of the file
 ### Implementation Notes
 
 Please ensure that all assets use absolute path names, otherwise this plugin might not operate correctly.
+
+
+
 
 
 <!-- INSTALL/ -->
