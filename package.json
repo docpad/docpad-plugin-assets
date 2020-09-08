@@ -1,7 +1,7 @@
 {
   "title": "Assets Plugin for DocPad",
   "name": "docpad-plugin-assets",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "DocPad plugin to change URL of asset files to contain hash of contents, allowing for effective caching whilst enabling cache busting when contents change",
   "homepage": "https://github.com/docpad/docpad-plugin-assets",
   "license": "MIT",
@@ -68,8 +68,7 @@
     "url": "https://github.com/docpad/docpad-plugin-assets.git"
   },
   "engines": {
-    "node": ">=10",
-    "docpad": ">=6"
+    "node": ">=10"
   },
   "editions": [
     {
@@ -107,13 +106,13 @@
     "@bevry/update-contributors": "^1.17.0",
     "coffeelint": "^2.1.0",
     "coffeescript": "^2.5.1",
-    "docpad": "^6.83.1",
+    "docpad": "^6.83.2",
     "docpad-plugintester": "^1.7.3",
     "projectz": "^2.16.0",
     "valid-directory": "^3.4.0"
   },
   "peerDependencies": {
-    "docpad": "^6.83.1"
+    "docpad": "^6.83.2"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
